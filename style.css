@@ -1,27 +1,51 @@
 /* ==========================================
-   LOUVRE COLOR PALETTE & GLOBAL TYPOGRAPHY
+   1. GLOBAL VARIABLES & BASE STYLES
    ========================================== */
 :root {
   --bg-primary: #f5f0eb;       /* Gallery limestone / soft tan */
   --bg-card: #faf7f2;          /* Light warm parchment */
+  --bg-header: #ede7df;        /* Muted header tan */
   --text-main: #2b2625;        /* Deep gallery charcoal */
   --text-muted: #6e655f;       /* Warm taupe */
   --accent-gold: #c5a059;      /* French antique gold */
   --border-tan: #e2d7c5;       /* Warm sandstone border */
+  --font-serif: 'Times New Roman', Times, serif;
+}
+
+/* Dark Theme Support */
+body.dark-theme {
+  --bg-primary: #1a1816;
+  --bg-card: #26221f;
+  --bg-header: #211e1c;
+  --text-main: #f0ebe1;
+  --text-muted: #b8b0a5;
+  --accent-gold: #d4af37;
+  --border-tan: #3d3630;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   background-color: var(--bg-primary);
   color: var(--text-main);
-  font-family: 'Times New Roman', Times, serif;
-  margin: 0;
-  padding: 0;
+  font-family: var(--font-serif);
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Header & Nav */
+/* ==========================================
+   2. HEADER & NAVIGATION
+   ========================================== */
 header {
-  background-color: #ede7df;
+  background-color: var(--bg-header);
   border-bottom: 1px solid var(--border-tan);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .navbar {
@@ -29,10 +53,12 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 1.2rem 8%;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .logo {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: var(--font-serif);
   font-size: 1.6rem;
   font-weight: bold;
   letter-spacing: 1px;
@@ -43,16 +69,15 @@ header {
   list-style: none;
   display: flex;
   gap: 2rem;
-  margin: 0;
-  padding: 0;
 }
 
 .nav-links a {
   text-decoration: none;
   color: var(--text-main);
-  font-family: 'Times New Roman', Times, serif;
+  font-family: var(--font-serif);
   font-size: 1.05rem;
-  transition: color 0.3s ease;
+  padding-bottom: 3px;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
 }
 
 .nav-links a:hover,
@@ -65,9 +90,10 @@ header {
   background: transparent;
   border: 1px solid var(--accent-gold);
   color: var(--text-main);
-  font-family: 'Times New Roman', Times, serif;
+  font-family: var(--font-serif);
   padding: 0.5rem 1.2rem;
   cursor: pointer;
+  font-size: 0.95rem;
   transition: all 0.3s ease;
 }
 
@@ -77,33 +103,31 @@ header {
 }
 
 /* ==========================================
-   LEFT-ALIGNED HERO BANNER (LOUVRE PHOTO)
+   3. LEFT-ALIGNED HERO BANNER (LOUVRE PHOTO)
    ========================================== */
 .louvre-hero {
   position: relative;
   width: 100%;
   height: 85vh;
-  /* Uses your uploaded Louvre courtyard photo */
+  min-height: 500px;
   background: url('images/louvre.jpg') center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: flex-start;
 }
 
-/* Gradient overlay so white left-aligned text stays readable against light glass roof */
 .hero-overlay {
   width: 100%;
   height: 100%;
   background: linear-gradient(
     to right,
-    rgba(25, 22, 20, 0.85) 0%,
-    rgba(25, 22, 20, 0.6) 45%,
-    rgba(25, 22, 20, 0.15) 100%
+    rgba(20, 17, 15, 0.88) 0%,
+    rgba(20, 17, 15, 0.65) 45%,
+    rgba(20, 17, 15, 0.2) 100%
   );
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  text-align: left;
   padding-left: 8%;
 }
 
@@ -114,9 +138,9 @@ header {
 }
 
 .hero-content h1 {
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 4rem;
-  font-weight: 400;
+  font-family: var(--font-serif);
+  font-size: 3.8rem;
+  font-weight: normal;
   letter-spacing: 1px;
   margin-bottom: 1rem;
   color: #fbf9f5;
@@ -124,7 +148,7 @@ header {
 }
 
 .hero-subtitle {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: var(--font-serif);
   font-size: 1.25rem;
   font-style: italic;
   line-height: 1.6;
@@ -133,13 +157,13 @@ header {
   text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
 }
 
-.cta-button, .hero-btn {
+.cta-button {
   display: inline-block;
   padding: 0.9rem 2.2rem;
   border: 1px solid var(--accent-gold);
   color: #ffffff;
   text-decoration: none;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: var(--font-serif);
   font-size: 1rem;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -147,38 +171,41 @@ header {
   transition: all 0.3s ease;
 }
 
-.cta-button:hover, .hero-btn:hover {
+.cta-button:hover {
   background: var(--accent-gold);
   color: #1a1816;
   box-shadow: 0 4px 15px rgba(197, 160, 89, 0.4);
 }
 
 /* ==========================================
-   QUOTE BANNER & CATEGORIES (TAN PALETTE)
+   4. QUOTE BANNER
    ========================================== */
 .quote-banner {
-  background-color: #ede7df;
+  background-color: var(--bg-header);
   border-top: 1px solid var(--border-tan);
   border-bottom: 1px solid var(--border-tan);
-  padding: 2rem 8%;
+  padding: 2.5rem 8%;
   text-align: center;
 }
 
 #quote-display {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   color: var(--text-main);
-  margin-bottom: 1rem;
+  max-width: 800px;
+  margin: 0 auto 1.2rem auto;
 }
 
 #quote-btn {
   background: transparent;
   border: 1px solid var(--accent-gold);
   color: var(--text-main);
-  font-family: 'Times New Roman', Times, serif;
-  padding: 0.4rem 1.2rem;
+  font-family: var(--font-serif);
+  padding: 0.4rem 1.4rem;
   cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
 }
 
 #quote-btn:hover {
@@ -186,14 +213,17 @@ header {
   color: #ffffff;
 }
 
+/* ==========================================
+   5. CURATED EXHIBITIONS (5 CATEGORIES LIST)
+   ========================================== */
 .categories-section {
   max-width: 1100px;
-  margin: 4rem auto;
+  margin: 5rem auto;
   padding: 0 2rem;
 }
 
 .categories-section h2 {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: var(--font-serif);
   font-size: 2.8rem;
   font-weight: normal;
   text-align: center;
@@ -203,11 +233,11 @@ header {
 
 .section-intro {
   text-align: center;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: var(--font-serif);
   font-style: italic;
   font-size: 1.1rem;
   color: var(--text-muted);
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
 }
 
 .category-list {
@@ -225,13 +255,12 @@ header {
   padding: 1.25rem 2rem;
   text-decoration: none;
   color: inherit;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
 }
 
 .category-item:hover {
   transform: translateX(6px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
-  background: #ffffff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
 .category-thumb {
@@ -254,7 +283,7 @@ header {
 }
 
 .category-info h3 {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: var(--font-serif);
   font-size: 1.7rem;
   font-weight: normal;
   margin-bottom: 0.3rem;
@@ -262,7 +291,7 @@ header {
 }
 
 .category-info p {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: var(--font-serif);
   font-size: 1rem;
   color: var(--text-muted);
   line-height: 1.4;
@@ -270,18 +299,68 @@ header {
 }
 
 .view-link {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: var(--font-serif);
   font-size: 0.95rem;
   color: var(--accent-gold);
   margin-left: 1.5rem;
   white-space: nowrap;
 }
 
+/* ==========================================
+   6. FOOTER
+   ========================================== */
 footer {
   text-align: center;
   padding: 2.5rem;
-  background-color: #ede7df;
+  background-color: var(--bg-header);
   border-top: 1px solid var(--border-tan);
-  font-family: 'Times New Roman', Times, serif;
+  font-family: var(--font-serif);
   color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* ==========================================
+   7. RESPONSIVE DESIGN
+   ========================================== */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .louvre-hero {
+    height: 70vh;
+  }
+
+  .hero-overlay {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .hero-content h1 {
+    font-size: 2.6rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.05rem;
+  }
+
+  .category-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem;
+  }
+
+  .category-thumb {
+    width: 100%;
+    height: 180px;
+    margin-right: 0;
+  }
+
+  .view-link {
+    margin-left: 0;
+    align-self: flex-end;
+  }
 }
