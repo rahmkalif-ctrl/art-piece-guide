@@ -1,18 +1,29 @@
 /* ==========================================
-   1. GLOBAL VARIABLES & BASE STYLES
+   1. GLOBAL VARIABLES & ARCHITECTURAL PALETTE
    ========================================== */
 :root {
-  --bg-primary: #d8be91;       /* Natural warm sandstone base */
-  --bg-card: #c8ae81;          /* Deeper layered sandstone card tone */
-  --bg-footer: #a68d62;        /* Earthy stone footer shade */
-  --text-main: #241b12;        /* High-contrast deep antique charcoal */
-  --text-muted: #4e3f30;       /* Warm dark stone taupe */
-  --accent-gold: #f2d49b;      /* Bright antique champagne gold */
-  --border-tan: #b2996e;       /* Weathered sandstone border */
+  /* Sandstone Hierarchy */
+  --bg-primary: #d8be91;       /* Warm base sandstone */
+  --bg-card: #e5cfaa;          /* Lighter parchment card for crisp contrast */
+  --bg-footer: #3d2f22;        /* Dark espresso footer for grounding depth */
+  
+  /* Text & Contrast */
+  --text-main: #1c150e;        /* Deep antique charcoal */
+  --text-muted: #524233;       /* Muted dark taupe */
+  --text-light: #f7eee1;       /* Cream tone for dark backgrounds */
+  
+  /* Metallic Accents & Borders */
+  --accent-gold: #9e7738;      /* Rich antique gold */
+  --border-subtle: rgba(82, 66, 51, 0.18);
+  
+  /* Typography */
   --font-serif: 'Cormorant Garamond', 'Times New Roman', serif;
   --font-sans: 'Montserrat', sans-serif;
-  --shadow-card: 0 10px 30px rgba(36, 27, 18, 0.14);
-  --shadow-hover: 0 18px 40px rgba(36, 27, 18, 0.24);
+  
+  /* Micro-Interactions & Elevation */
+  --shadow-ambient: 0 12px 32px -4px rgba(28, 21, 14, 0.12);
+  --shadow-hover: 0 20px 45px -8px rgba(28, 21, 14, 0.22);
+  --ease-museum: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 * {
@@ -67,9 +78,9 @@ body {
 .hero-content h1 {
   font-family: var(--font-serif);
   font-size: 4.4rem;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.1;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   margin-bottom: 1rem;
   color: #f7eee1;
   text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.9);
@@ -95,21 +106,21 @@ body {
 
 .categories-section h2 {
   font-family: var(--font-serif);
-  font-size: 3.2rem;
-  font-weight: 400;
+  font-size: 3.4rem;
+  font-weight: 300;
+  letter-spacing: 2px;
   text-align: center;
   margin-bottom: 0.5rem;
   color: var(--text-main);
-  letter-spacing: 1px;
 }
 
 .categories-section h2::after {
   content: '';
   display: block;
-  width: 60px;
-  height: 2px;
+  width: 40px;
+  height: 1px;
   background: var(--accent-gold);
-  margin: 1rem auto 0.8rem auto;
+  margin: 1.2rem auto 0.8rem auto;
 }
 
 .section-intro {
@@ -131,41 +142,43 @@ body {
   display: flex;
   align-items: center;
   background: var(--bg-card);
-  border: 1px solid var(--border-tan);
-  border-left: 5px solid var(--accent-gold);
-  padding: 1.5rem 2.2rem;
+  border: 1px solid var(--border-subtle);
+  border-left: 4px solid var(--accent-gold);
+  border-radius: 2px;
+  padding: 1.8rem 2.5rem;
   text-decoration: none;
   color: inherit;
-  box-shadow: var(--shadow-card);
-  transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: var(--shadow-ambient);
+  transition: transform 0.4s var(--ease-museum), 
+              box-shadow 0.4s var(--ease-museum), 
+              background-color 0.4s ease;
 }
 
 .category-item:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   box-shadow: var(--shadow-hover);
-  border-color: var(--accent-gold);
-  background-color: #d2b88b;
+  background-color: #ecdabf;
 }
 
 .category-thumb {
-  width: 140px;
-  height: 95px;
+  width: 150px;
+  height: 100px;
   flex-shrink: 0;
   overflow: hidden;
-  margin-right: 2rem;
-  border: 1px solid var(--border-tan);
-  position: relative;
+  margin-right: 2.2rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 1px;
 }
 
 .category-thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s var(--ease-museum);
 }
 
 .category-item:hover .category-thumb img {
-  transform: scale(1.08);
+  transform: scale(1.06);
 }
 
 .category-info {
@@ -174,7 +187,7 @@ body {
 
 .category-info h3 {
   font-family: var(--font-serif);
-  font-size: 1.9rem;
+  font-size: 1.8rem;
   font-weight: 600;
   margin-bottom: 0.4rem;
   color: var(--text-main);
@@ -192,32 +205,35 @@ body {
 
 .view-link {
   font-family: var(--font-sans);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 1.5px;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  color: #1f150b;
+  color: var(--accent-gold);
   margin-left: 2rem;
   white-space: nowrap;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s var(--ease-museum), color 0.3s ease;
 }
 
 .category-item:hover .view-link {
-  transform: translateX(4px);
+  transform: translateX(6px);
+  color: var(--text-main);
 }
 
 /* ==========================================
-   4. FOOTER
+   4. GROUNDED FOOTER
    ========================================== */
 footer {
   text-align: center;
-  padding: 3rem;
+  padding: 3.5rem 2rem;
   background-color: var(--bg-footer);
-  border-top: 1px solid var(--border-tan);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   font-family: var(--font-sans);
-  color: #f5ea38;
-  font-size: 0.85rem;
-  letter-spacing: 1px;
+  color: var(--text-light);
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  opacity: 0.9;
 }
 
 /* ==========================================
@@ -247,7 +263,7 @@ footer {
     width: 100%;
     height: 180px;
     margin-right: 0;
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
   }
 
   .view-link {
