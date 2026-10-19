@@ -2,17 +2,17 @@
    1. GLOBAL VARIABLES & BASE STYLES
    ========================================== */
 :root {
-  --bg-primary: #b87b48;       /* AK11409 Orange Tan base */
-  --bg-card: #a2693a;          /* Deeper warm terracotta card tone */
-  --bg-footer: #89552b;        /* Deep oak/amber footer tone */
-  --text-main: #1d120a;        /* High-contrast deep espresso charcoal */
-  --text-muted: #3d2616;       /* Warm dark brown taupe */
-  --accent-gold: #f2ce8a;      /* Lighter champagne gold for high visibility */
-  --border-tan: #8d582c;       /* Muted warm earth border */
+  --bg-primary: #d8be91;       /* Natural warm sandstone base */
+  --bg-card: #c8ae81;          /* Deeper layered sandstone card tone */
+  --bg-footer: #a68d62;        /* Earthy stone footer shade */
+  --text-main: #241b12;        /* High-contrast deep antique charcoal */
+  --text-muted: #4e3f30;       /* Warm dark stone taupe */
+  --accent-gold: #f2d49b;      /* Bright antique champagne gold */
+  --border-tan: #b2996e;       /* Weathered sandstone border */
   --font-serif: 'Cormorant Garamond', 'Times New Roman', serif;
   --font-sans: 'Montserrat', sans-serif;
-  --shadow-card: 0 10px 30px rgba(29, 18, 10, 0.18);
-  --shadow-hover: 0 18px 40px rgba(29, 18, 10, 0.28);
+  --shadow-card: 0 10px 30px rgba(36, 27, 18, 0.14);
+  --shadow-hover: 0 18px 40px rgba(36, 27, 18, 0.24);
 }
 
 * {
@@ -144,7 +144,7 @@ body {
   transform: translateY(-4px);
   box-shadow: var(--shadow-hover);
   border-color: var(--accent-gold);
-  background-color: #ad7241;
+  background-color: #d2b88b;
 }
 
 .category-thumb {
@@ -196,7 +196,7 @@ body {
   font-weight: 600;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: var(--accent-gold);
+  color: #1f150b;
   margin-left: 2rem;
   white-space: nowrap;
   transition: transform 0.3s ease;
@@ -215,7 +215,7 @@ footer {
   background-color: var(--bg-footer);
   border-top: 1px solid var(--border-tan);
   font-family: var(--font-sans);
-  color: #ebdcc4;
+  color: #f5ea38;
   font-size: 0.85rem;
   letter-spacing: 1px;
 }
