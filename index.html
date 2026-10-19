@@ -11,23 +11,25 @@
   <!-- Navigation Menu -->
   <header>
     <nav class="navbar">
-      <div class="logo">🎨 Canvas & Time</div>
+      <div class="logo">Canvas & Time</div>
       <ul class="nav-links">
         <li><a href="index.html" class="active">Home</a></li>
         <li><a href="artworks.html">Artworks & Analysis</a></li>
         <li><a href="artists.html">Artist Profiles</a></li>
       </ul>
-      <button id="theme-btn">🌙 Dark Mode</button>
+      <button id="theme-btn">Dark Mode</button>
     </nav>
   </header>
 
   <main>
-    <!-- Left-Aligned Hero Section -->
-    <section class="hero-left">
-      <div class="hero-text">
-        <h1>Welcome to the Art Gallery</h1>
-        <p>Step into a curated digital exhibition exploring history's defining art movements, profound masterpieces, and the revolutionary visionaries behind them.</p>
-        <a href="#genres" class="cta-button">Explore Genres ↓</a>
+    <!-- Louvre Hero Section -->
+    <section class="louvre-hero">
+      <div class="hero-overlay">
+        <div class="hero-content">
+          <h1>Welcome to the Art Gallery</h1>
+          <p class="hero-subtitle">Step into a curated digital exhibition exploring history's defining art movements, profound masterpieces, and the revolutionary visionaries behind them.</p>
+          <a href="#categories" class="cta-button">Explore Exhibitions</a>
+        </div>
       </div>
     </section>
 
@@ -37,37 +39,70 @@
       <button id="quote-btn">New Quote</button>
     </section>
 
-    <!-- Art Genre Section -->
-    <section id="genres" class="genres-section">
+    <!-- Curated Exhibitions (List Format) -->
+    <section id="categories" class="categories-section">
       <h2>Curated Exhibitions</h2>
-      <p>Select a genre to view iconic masterpieces and detailed analysis:</p>
+      <p class="section-intro">Select a movement to view iconic masterpieces and detailed historical analysis:</p>
 
-      <div class="genre-grid">
-        <!-- Genre 1 -->
-        <a href="artworks.html#renaissance" class="genre-card">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/800px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg" alt="High Renaissance Art">
-          <div class="genre-info">
-            <h3>High Renaissance</h3>
-            <p>Mastery of perspective, anatomical precision, and emotional expression.</p>
+      <div class="category-list">
+        <!-- Category 1 -->
+        <a href="artworks.html#neoclassicism" class="category-item">
+          <div class="category-thumb">
+            <img src="images/napolean.jpg" alt="Neoclassicism Art">
           </div>
+          <div class="category-info">
+            <h3>1. Neoclassicism</h3>
+            <p>Inspired by classical antiquity, emphasizing monumental historical scenes, symmetry, order, and heroic posture.</p>
+          </div>
+          <span class="view-link">View Collection &rarr;</span>
         </a>
 
-        <!-- Genre 2 -->
-        <a href="artworks.html#post-impressionism" class="genre-card">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" alt="Post-Impressionism Art">
-          <div class="genre-info">
-            <h3>Post-Impressionism</h3>
-            <p>Vibrant colors, bold expressive brushstrokes, and deep psychological mood.</p>
+        <!-- Category 2 -->
+        <a href="artworks.html#romanticism" class="category-item">
+          <div class="category-thumb">
+            <img src="images/raft of medusa.jpg" alt="Romanticism Art">
           </div>
+          <div class="category-info">
+            <h3>2. Romanticism</h3>
+            <p>Dramatic compositions focused on intense emotion, natural awe, heroic tragedy, and sublime imagination.</p>
+          </div>
+          <span class="view-link">View Collection &rarr;</span>
         </a>
 
-        <!-- Genre 3 -->
-        <a href="artworks.html#ukiyo-e" class="genre-card">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Great_Wave_off_Kanagawa2.jpg/1280px-Great_Wave_off_Kanagawa2.jpg" alt="Ukiyo-e Woodblock Art">
-          <div class="genre-info">
-            <h3>Ukiyo-e (Japanese Woodblock)</h3>
-            <p>Capturing the floating world, nature's power, and dramatic landscapes.</p>
+        <!-- Category 3 -->
+        <a href="artworks.html#impressionism" class="category-item">
+          <div class="category-thumb">
+            <img src="images/japanese footbridge.jpeg" alt="Impressionism Art">
           </div>
+          <div class="category-info">
+            <h3>3. Impressionism</h3>
+            <p>Capturing transient light, vibrant natural landscapes, outdoor atmosphere, and visible brushstrokes.</p>
+          </div>
+          <span class="view-link">View Collection &rarr;</span>
+        </a>
+
+        <!-- Category 4 -->
+        <a href="artworks.html#post-impressionism" class="category-item">
+          <div class="category-thumb">
+            <img src="images/bedroom in arles.jpg" alt="Post-Impressionism Art">
+          </div>
+          <div class="category-info">
+            <h3>4. Post-Impressionism</h3>
+            <p>Bold subjective color choices, vivid geometric structure, and deep psychological mood expression.</p>
+          </div>
+          <span class="view-link">View Collection &rarr;</span>
+        </a>
+
+        <!-- Category 5 -->
+        <a href="artworks.html#academic-art" class="category-item">
+          <div class="category-thumb">
+            <img src="images/Geromeconde.jpg" alt="Academic Art">
+          </div>
+          <div class="category-info">
+            <h3>5. Academic & Historical Realism</h3>
+            <p>High architectural precision, intricate detail, and royal theatrical grandeur influenced by European academies.</p>
+          </div>
+          <span class="view-link">View Collection &rarr;</span>
         </a>
       </div>
     </section>
