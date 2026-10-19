@@ -2,14 +2,18 @@
    1. GLOBAL VARIABLES & BASE STYLES
    ========================================== */
 :root {
-  --bg-primary: #f2ebdf;       /* French limestone tan base */
+  --bg-primary: #f2ebdf;       /* French limestone base */
   --bg-card: #e8dfcf;          /* Warm sandstone parchment card */
   --bg-header: #e2d7c3;        /* Warm gallery header tan */
   --text-main: #2b241f;        /* Deep antique bronze/charcoal */
   --text-muted: #6e6155;       /* Warm museum taupe */
   --accent-gold: #c5a059;      /* French antique gold */
+  --accent-gold-hover: #dfb76c;
   --border-tan: #d6c8b2;       /* Weathered stone border */
-  --font-serif: 'Times New Roman', Times, serif;
+  --font-serif: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-sans: 'Montserrat', sans-serif;
+  --shadow-card: 0 10px 30px rgba(43, 36, 31, 0.07);
+  --shadow-hover: 0 18px 40px rgba(43, 36, 31, 0.14);
 }
 
 /* Dark Theme Support */
@@ -21,6 +25,8 @@ body.dark-theme {
   --text-muted: #b8a894;
   --accent-gold: #d4af37;
   --border-tan: #3d3328;
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.3);
+  --shadow-hover: 0 18px 40px rgba(0, 0, 0, 0.5);
 }
 
 * {
@@ -34,7 +40,8 @@ body {
   color: var(--text-main);
   font-family: var(--font-serif);
   line-height: 1.6;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.4s ease, color 0.4s ease;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* ==========================================
@@ -46,54 +53,61 @@ header {
   position: sticky;
   top: 0;
   z-index: 100;
+  backdrop-filter: blur(8px);
 }
 
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem 8%;
+  padding: 1.4rem 8%;
   max-width: 1400px;
   margin: 0 auto;
 }
 
 .logo {
   font-family: var(--font-serif);
-  font-size: 1.6rem;
-  font-weight: bold;
-  letter-spacing: 1px;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   color: var(--text-main);
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
 .nav-links a {
   text-decoration: none;
   color: var(--text-main);
-  font-family: var(--font-serif);
-  font-size: 1.05rem;
-  padding-bottom: 3px;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding-bottom: 6px;
   transition: color 0.3s ease, border-bottom 0.3s ease;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
   color: var(--accent-gold);
-  border-bottom: 1px solid var(--accent-gold);
+  border-bottom: 2px solid var(--accent-gold);
 }
 
 #theme-btn {
   background: transparent;
   border: 1px solid var(--accent-gold);
   color: var(--text-main);
-  font-family: var(--font-serif);
-  padding: 0.5rem 1.2rem;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 0.6rem 1.4rem;
   cursor: pointer;
-  font-size: 0.95rem;
   transition: all 0.3s ease;
 }
 
@@ -103,13 +117,13 @@ header {
 }
 
 /* ==========================================
-   3. LEFT-ALIGNED HERO BANNER
+   3. HERO BANNER
    ========================================== */
 .louvre-hero {
   position: relative;
   width: 100%;
   height: 85vh;
-  min-height: 500px;
+  min-height: 550px;
   background: url('images/louvre.jpg') center/cover no-repeat;
   display: flex;
   align-items: center;
@@ -120,10 +134,10 @@ header {
   width: 100%;
   height: 100%;
   background: linear-gradient(
-    to right,
-    rgba(28, 22, 17, 0.9) 0%,
-    rgba(28, 22, 17, 0.68) 45%,
-    rgba(28, 22, 17, 0.25) 100%
+    90deg,
+    rgba(22, 17, 13, 0.92) 0%,
+    rgba(22, 17, 13, 0.72) 50%,
+    rgba(22, 17, 13, 0.15) 100%
   );
   display: flex;
   align-items: center;
@@ -139,108 +153,132 @@ header {
 
 .hero-content h1 {
   font-family: var(--font-serif);
-  font-size: 3.8rem;
-  font-weight: normal;
+  font-size: 4.2rem;
+  font-weight: 400;
+  line-height: 1.1;
   letter-spacing: 1px;
-  margin-bottom: 1rem;
-  color: #f2e3cb;
-  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.85);
+  margin-bottom: 1.2rem;
+  color: #f7eee1;
+  text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.9);
 }
 
 .hero-subtitle {
   font-family: var(--font-serif);
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   font-style: italic;
   line-height: 1.6;
   color: #d9c8b0;
   margin-bottom: 2.5rem;
-  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.85);
+  text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.8);
 }
 
 .cta-button {
   display: inline-block;
-  padding: 0.9rem 2.2rem;
+  padding: 1rem 2.4rem;
   border: 1px solid var(--accent-gold);
-  color: #f2e3cb;
+  color: #f7eee1;
   text-decoration: none;
-  font-family: var(--font-serif);
-  font-size: 1rem;
-  letter-spacing: 1.5px;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  background: rgba(36, 28, 21, 0.7);
+  background: rgba(28, 22, 17, 0.65);
+  backdrop-filter: blur(4px);
   transition: all 0.3s ease;
 }
 
 .cta-button:hover {
   background: var(--accent-gold);
   color: #1c1814;
-  box-shadow: 0 4px 15px rgba(197, 160, 89, 0.4);
+  box-shadow: 0 6px 20px rgba(197, 160, 89, 0.4);
 }
 
 /* ==========================================
-   4. CURATED EXHIBITIONS (5 CATEGORIES LIST)
+   4. CURATED EXHIBITIONS SECTION
    ========================================== */
 .categories-section {
   max-width: 1100px;
-  margin: 5rem auto;
+  margin: 6rem auto;
   padding: 0 2rem;
 }
 
 .categories-section h2 {
   font-family: var(--font-serif);
-  font-size: 2.8rem;
-  font-weight: normal;
+  font-size: 3.2rem;
+  font-weight: 400;
   text-align: center;
   margin-bottom: 0.5rem;
   color: var(--text-main);
+  letter-spacing: 1px;
+}
+
+/* Subtle gold underline detail */
+.categories-section h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: var(--accent-gold);
+  margin: 1rem auto 0.8rem auto;
 }
 
 .section-intro {
   text-align: center;
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: var(--text-muted);
-  margin-bottom: 3.5rem;
+  margin-bottom: 4rem;
 }
 
 .category-list {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
+/* Card Styling & Micro-Interactions */
 .category-item {
   display: flex;
   align-items: center;
   background: var(--bg-card);
   border: 1px solid var(--border-tan);
-  border-left: 4px solid var(--accent-gold);
-  padding: 1.25rem 2rem;
+  border-left: 5px solid var(--accent-gold);
+  padding: 1.5rem 2.2rem;
   text-decoration: none;
   color: inherit;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+  box-shadow: var(--shadow-card);
+  transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .category-item:hover {
-  transform: translateX(6px);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--accent-gold);
   background-color: #f7efe2;
-  box-shadow: 0 6px 20px rgba(43, 36, 31, 0.12);
 }
 
 .category-thumb {
-  width: 110px;
-  height: 75px;
+  width: 140px;
+  height: 95px;
   flex-shrink: 0;
   overflow: hidden;
-  margin-right: 1.8rem;
+  margin-right: 2rem;
   border: 1px solid var(--border-tan);
+  position: relative;
 }
 
+/* Image Hover Zoom Effect */
 .category-thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.category-item:hover .category-thumb img {
+  transform: scale(1.08);
 }
 
 .category-info {
@@ -249,26 +287,36 @@ header {
 
 .category-info h3 {
   font-family: var(--font-serif);
-  font-size: 1.7rem;
-  font-weight: normal;
-  margin-bottom: 0.3rem;
+  font-size: 1.9rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
   color: var(--text-main);
+  letter-spacing: 0.5px;
 }
 
 .category-info p {
-  font-family: var(--font-serif);
-  font-size: 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
   color: var(--text-muted);
-  line-height: 1.4;
+  line-height: 1.6;
   margin: 0;
+  font-weight: 300;
 }
 
 .view-link {
-  font-family: var(--font-serif);
-  font-size: 0.95rem;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
   color: var(--accent-gold);
-  margin-left: 1.5rem;
+  margin-left: 2rem;
   white-space: nowrap;
+  transition: transform 0.3s ease;
+}
+
+.category-item:hover .view-link {
+  transform: translateX(4px);
 }
 
 /* ==========================================
@@ -276,12 +324,13 @@ header {
    ========================================== */
 footer {
   text-align: center;
-  padding: 2.5rem;
+  padding: 3rem;
   background-color: var(--bg-header);
   border-top: 1px solid var(--border-tan);
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   color: var(--text-muted);
-  font-size: 0.95rem;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
 }
 
 /* ==========================================
@@ -290,42 +339,34 @@ footer {
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
-    gap: 1rem;
-    padding: 1rem;
+    gap: 1.2rem;
+    padding: 1.2rem;
   }
 
   .louvre-hero {
-    height: 70vh;
-  }
-
-  .hero-overlay {
-    padding-left: 5%;
-    padding-right: 5%;
+    height: 75vh;
   }
 
   .hero-content h1 {
-    font-size: 2.6rem;
-  }
-
-  .hero-subtitle {
-    font-size: 1.05rem;
+    font-size: 2.8rem;
   }
 
   .category-item {
     flex-direction: column;
     align-items: flex-start;
-    gap: 1rem;
-    padding: 1.25rem;
+    padding: 1.5rem;
   }
 
   .category-thumb {
     width: 100%;
     height: 180px;
     margin-right: 0;
+    margin-bottom: 1rem;
   }
 
   .view-link {
     margin-left: 0;
+    margin-top: 1rem;
     align-self: flex-end;
   }
 }
