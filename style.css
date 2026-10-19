@@ -3,24 +3,24 @@
    ========================================== */
 :root {
   /* Sandstone Hierarchy */
-  --bg-primary: #d8be91;       /* Warm base sandstone */
-  --bg-card: #e5cfaa;          /* Lighter parchment card for crisp contrast */
-  --bg-footer: #3d2f22;        /* Dark espresso footer for grounding depth */
+  --bg-primary: #d8be91;       /* Natural warm sandstone base */
+  --bg-card: #e5cfaa;          /* Lighter parchment card tone */
+  --bg-footer: #3d2f22;        /* Dark espresso footer */
   
   /* Text & Contrast */
   --text-main: #1c150e;        /* Deep antique charcoal */
-  --text-muted: #524233;       /* Muted dark taupe */
+  --text-muted: #4e3f30;       /* Muted dark taupe */
   --text-light: #f7eee1;       /* Cream tone for dark backgrounds */
   
-  /* Metallic Accents & Borders */
-  --accent-gold: #9e7738;      /* Rich antique gold */
-  --border-subtle: rgba(82, 66, 51, 0.18);
+  /* Metallic Accents & Hairline Borders */
+  --accent-gold: #8c6328;      /* Deep antique gold accent */
+  --border-subtle: rgba(78, 63, 48, 0.22); /* Fine stone divider line */
   
   /* Typography */
   --font-serif: 'Cormorant Garamond', 'Times New Roman', serif;
   --font-sans: 'Montserrat', sans-serif;
   
-  /* Micro-Interactions & Elevation */
+  /* Elevation & Motion Parameters */
   --shadow-ambient: 0 12px 32px -4px rgba(28, 21, 14, 0.12);
   --shadow-hover: 0 20px 45px -8px rgba(28, 21, 14, 0.22);
   --ease-museum: cubic-bezier(0.16, 1, 0.3, 1);
@@ -41,8 +41,15 @@ body {
 }
 
 /* ==========================================
-   2. HERO BANNER (TOP & LEFT ALIGNED)
+   2. TOP BAR & HERO BANNER
    ========================================== */
+.top-bar {
+  width: 100%;
+  height: 28px;
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
 .louvre-hero {
   position: relative;
   width: 100%;
@@ -96,21 +103,22 @@ body {
 }
 
 /* ==========================================
-   3. CURATED EXHIBITIONS SECTION
+   3. CURATED EXHIBITIONS (EDITORIAL LIST)
    ========================================== */
 .categories-section {
   max-width: 1100px;
-  margin: 6rem auto;
+  margin: 2.2rem auto 6rem auto;
   padding: 0 2rem;
 }
 
 .categories-section h2 {
   font-family: var(--font-serif);
-  font-size: 3.4rem;
+  font-size: 3rem;
   font-weight: 300;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
   text-align: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
   color: var(--text-main);
 }
 
@@ -120,65 +128,60 @@ body {
   width: 40px;
   height: 1px;
   background: var(--accent-gold);
-  margin: 1.2rem auto 0.8rem auto;
+  margin: 1rem auto 0.8rem auto;
 }
 
 .section-intro {
   text-align: center;
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   color: var(--text-muted);
-  margin-bottom: 4rem;
+  margin-bottom: 3.5rem;
 }
 
 .category-list {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  border-top: 1px solid var(--border-subtle);
 }
 
 .category-item {
   display: flex;
   align-items: center;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-left: 4px solid var(--accent-gold);
-  border-radius: 2px;
-  padding: 1.8rem 2.5rem;
+  padding: 2rem 1rem;
   text-decoration: none;
   color: inherit;
-  box-shadow: var(--shadow-ambient);
-  transition: transform 0.4s var(--ease-museum), 
-              box-shadow 0.4s var(--ease-museum), 
-              background-color 0.4s ease;
+  border-bottom: 1px solid var(--border-subtle);
+  background: transparent;
+  transition: background-color 0.35s ease, padding-left 0.35s var(--ease-museum);
 }
 
 .category-item:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-hover);
-  background-color: #ecdabf;
+  background-color: rgba(255, 255, 255, 0.15);
+  padding-left: 1.8rem;
 }
 
 .category-thumb {
   width: 150px;
-  height: 100px;
+  height: 95px;
   flex-shrink: 0;
   overflow: hidden;
-  margin-right: 2.2rem;
+  margin-right: 2.5rem;
   border: 1px solid var(--border-subtle);
-  border-radius: 1px;
 }
 
 .category-thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s var(--ease-museum);
+  transition: transform 0.6s var(--ease-museum), filter 0.4s ease;
+  filter: brightness(0.95);
 }
 
 .category-item:hover .category-thumb img {
-  transform: scale(1.06);
+  transform: scale(1.08);
+  filter: brightness(1.02);
 }
 
 .category-info {
@@ -188,19 +191,24 @@ body {
 .category-info h3 {
   font-family: var(--font-serif);
   font-size: 1.8rem;
-  font-weight: 600;
-  margin-bottom: 0.4rem;
+  font-weight: 400;
   color: var(--text-main);
   letter-spacing: 0.5px;
+  margin-bottom: 0.3rem;
+  transition: color 0.3s ease;
+}
+
+.category-item:hover .category-info h3 {
+  color: var(--accent-gold);
 }
 
 .category-info p {
   font-family: var(--font-sans);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
-  line-height: 1.6;
-  margin: 0;
+  line-height: 1.5;
   font-weight: 400;
+  max-width: 650px;
 }
 
 .view-link {
@@ -209,19 +217,183 @@ body {
   font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--accent-gold);
+  color: var(--text-main);
   margin-left: 2rem;
   white-space: nowrap;
-  transition: transform 0.3s var(--ease-museum), color 0.3s ease;
+  opacity: 0.5;
+  transition: transform 0.35s var(--ease-museum), opacity 0.3s ease, color 0.3s ease;
 }
 
 .category-item:hover .view-link {
-  transform: translateX(6px);
-  color: var(--text-main);
+  transform: translateX(8px);
+  opacity: 1;
+  color: var(--accent-gold);
 }
 
 /* ==========================================
-   4. GROUNDED FOOTER
+   4. ARTWORKS & ANALYSIS PAGE (artworks.html)
+   ========================================== */
+.gallery-container {
+  max-width: 1200px;
+  margin: 4rem auto;
+  padding: 0 2rem;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.page-header h1 {
+  font-family: var(--font-serif);
+  font-size: 3.6rem;
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: var(--text-main);
+  margin-bottom: 0.8rem;
+}
+
+.page-subtitle {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+.gold-divider {
+  width: 50px;
+  height: 1px;
+  background: var(--accent-gold);
+  margin: 1.5rem auto 0 auto;
+}
+
+.movement-section {
+  margin-bottom: 6rem;
+  scroll-margin-top: 2rem;
+}
+
+.movement-title {
+  font-family: var(--font-serif);
+  font-size: 2.4rem;
+  font-weight: 400;
+  color: var(--text-main);
+  margin-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 0.5rem;
+}
+
+.movement-desc {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  margin-bottom: 2.5rem;
+}
+
+.artwork-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.artwork-card {
+  display: flex;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-left: 4px solid var(--accent-gold);
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: var(--shadow-ambient);
+  transition: transform 0.4s var(--ease-museum), box-shadow 0.4s var(--ease-museum);
+}
+
+.artwork-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.artwork-image-container {
+  width: 42%;
+  flex-shrink: 0;
+  background: #1c150e;
+  overflow: hidden;
+  position: relative;
+  min-height: 320px;
+}
+
+.artwork-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-museum);
+}
+
+.artwork-card:hover .artwork-image-container img {
+  transform: scale(1.05);
+}
+
+.artwork-details {
+  padding: 2.2rem 2.8rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.artwork-meta {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 0.5rem;
+}
+
+.artwork-title {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.2;
+  margin-bottom: 0.2rem;
+}
+
+.artwork-artist {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-bottom: 1.8rem;
+}
+
+.analysis-block {
+  margin-bottom: 1.2rem;
+}
+
+.analysis-block:last-child {
+  margin-bottom: 0;
+}
+
+.analysis-block h5 {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-main);
+  margin-bottom: 0.3rem;
+}
+
+.analysis-block p {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ==========================================
+   5. GROUNDED FOOTER
    ========================================== */
 footer {
   text-align: center;
@@ -237,8 +409,23 @@ footer {
 }
 
 /* ==========================================
-   5. RESPONSIVE DESIGN
+   6. RESPONSIVE DESIGN
    ========================================== */
+@media (max-width: 900px) {
+  .artwork-card {
+    flex-direction: column;
+  }
+
+  .artwork-image-container {
+    width: 100%;
+    height: 260px;
+  }
+
+  .artwork-details {
+    padding: 1.8rem;
+  }
+}
+
 @media (max-width: 768px) {
   .louvre-hero {
     height: 70vh;
@@ -256,7 +443,7 @@ footer {
   .category-item {
     flex-direction: column;
     align-items: flex-start;
-    padding: 1.5rem;
+    padding: 1.5rem 0.5rem;
   }
 
   .category-thumb {
