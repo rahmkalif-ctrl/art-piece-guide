@@ -2,25 +2,25 @@
    1. GLOBAL VARIABLES & BASE STYLES
    ========================================== */
 :root {
-  --bg-primary: #f5f0eb;       /* Gallery limestone / soft tan */
-  --bg-card: #faf7f2;          /* Light warm parchment */
-  --bg-header: #ede7df;        /* Muted header tan */
-  --text-main: #2b2625;        /* Deep gallery charcoal */
-  --text-muted: #6e655f;       /* Warm taupe */
+  --bg-primary: #f2ebdf;       /* French limestone tan base */
+  --bg-card: #e8dfcf;          /* Warm sandstone parchment card */
+  --bg-header: #e2d7c3;        /* Warm gallery header tan */
+  --text-main: #2b241f;        /* Deep antique bronze/charcoal */
+  --text-muted: #6e6155;       /* Warm museum taupe */
   --accent-gold: #c5a059;      /* French antique gold */
-  --border-tan: #e2d7c5;       /* Warm sandstone border */
+  --border-tan: #d6c8b2;       /* Weathered stone border */
   --font-serif: 'Times New Roman', Times, serif;
 }
 
 /* Dark Theme Support */
 body.dark-theme {
-  --bg-primary: #1a1816;
-  --bg-card: #26221f;
-  --bg-header: #211e1c;
-  --text-main: #f0ebe1;
-  --text-muted: #b8b0a5;
+  --bg-primary: #1c1814;
+  --bg-card: #28221c;
+  --bg-header: #211c17;
+  --text-main: #eedfc8;
+  --text-muted: #b8a894;
   --accent-gold: #d4af37;
-  --border-tan: #3d3630;
+  --border-tan: #3d3328;
 }
 
 * {
@@ -99,7 +99,7 @@ header {
 
 #theme-btn:hover {
   background: var(--accent-gold);
-  color: #ffffff;
+  color: #1c1814;
 }
 
 /* ==========================================
@@ -110,7 +110,8 @@ header {
   width: 100%;
   height: 85vh;
   min-height: 500px;
-  background: url('https://images.unsplash.com/photo-1565099824688-e93eb20fe622?q=100&w=2800&auto=format&fit=crop') center/cover no-repeat;
+  /* Uses your uploaded Louvre sculpture courtyard image */
+  background: url('https://github.com/user-attachments/assets/1abb21cd-23ca-4b22-83fd-942f7790095d') center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -121,9 +122,9 @@ header {
   height: 100%;
   background: linear-gradient(
     to right,
-    rgba(20, 17, 15, 0.88) 0%,
-    rgba(20, 17, 15, 0.65) 45%,
-    rgba(20, 17, 15, 0.2) 100%
+    rgba(28, 22, 17, 0.9) 0%,
+    rgba(28, 22, 17, 0.68) 45%,
+    rgba(28, 22, 17, 0.25) 100%
   );
   display: flex;
   align-items: center;
@@ -132,7 +133,7 @@ header {
 }
 
 .hero-content {
-  color: #ffffff;
+  color: #ebdcc4;
   max-width: 650px;
   padding: 2rem 0;
 }
@@ -143,8 +144,8 @@ header {
   font-weight: normal;
   letter-spacing: 1px;
   margin-bottom: 1rem;
-  color: #fbf9f5;
-  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+  color: #f2e3cb;          /* Warm limestone parchment tone */
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.85);
 }
 
 .hero-subtitle {
@@ -152,28 +153,28 @@ header {
   font-size: 1.25rem;
   font-style: italic;
   line-height: 1.6;
-  color: #e8e2d8;
+  color: #d9c8b0;          /* Muted sand tone */
   margin-bottom: 2.5rem;
-  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.85);
 }
 
 .cta-button {
   display: inline-block;
   padding: 0.9rem 2.2rem;
   border: 1px solid var(--accent-gold);
-  color: #ffffff;
+  color: #f2e3cb;
   text-decoration: none;
   font-family: var(--font-serif);
   font-size: 1rem;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  background: rgba(28, 24, 21, 0.6);
+  background: rgba(36, 28, 21, 0.7);
   transition: all 0.3s ease;
 }
 
 .cta-button:hover {
   background: var(--accent-gold);
-  color: #1a1816;
+  color: #1c1814;
   box-shadow: 0 4px 15px rgba(197, 160, 89, 0.4);
 }
 
@@ -210,7 +211,7 @@ header {
 
 #quote-btn:hover {
   background: var(--accent-gold);
-  color: #ffffff;
+  color: #1c1814;
 }
 
 /* ==========================================
@@ -251,4 +252,47 @@ header {
   align-items: center;
   background: var(--bg-card);
   border: 1px solid var(--border-tan);
-  border-left:
+  border-left: 4px solid var(--accent-gold);
+  padding: 1.25rem 2rem;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.category-item:hover {
+  transform: translateX(6px);
+  background-color: #f7efe2;
+  box-shadow: 0 6px 20px rgba(43, 36, 31, 0.12);
+}
+
+.category-thumb {
+  width: 110px;
+  height: 75px;
+  flex-shrink: 0;
+  overflow: hidden;
+  margin-right: 1.8rem;
+  border: 1px solid var(--border-tan);
+}
+
+.category-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.category-info {
+  flex-grow: 1;
+}
+
+.category-info h3 {
+  font-family: var(--font-serif);
+  font-size: 1.7rem;
+  font-weight: normal;
+  margin-bottom: 0.3rem;
+  color: var(--text-main);
+}
+
+.category-info p {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color
