@@ -2,17 +2,17 @@
    1. GLOBAL VARIABLES & BASE STYLES
    ========================================== */
 :root {
-  --bg-primary: #baaa90;       /* Rich darker French tan base */
-  --bg-card: #ac9c82;          /* Deep sandstone parchment card */
-  --bg-footer: #a19177;        /* Darker museum footer tan */
-  --text-main: #1f1a16;        /* Deep antique bronze/charcoal */
-  --text-muted: #4a4037;       /* Dark warm taupe */
-  --accent-gold: #c5a059;      /* French antique gold */
-  --border-tan: #998a72;       /* Weathered stone border */
+  --bg-primary: #b87b48;       /* AK11409 Orange Tan base */
+  --bg-card: #a2693a;          /* Deeper warm terracotta card tone */
+  --bg-footer: #89552b;        /* Deep oak/amber footer tone */
+  --text-main: #1d120a;        /* High-contrast deep espresso charcoal */
+  --text-muted: #3d2616;       /* Warm dark brown taupe */
+  --accent-gold: #f2ce8a;      /* Lighter champagne gold for high visibility */
+  --border-tan: #8d582c;       /* Muted warm earth border */
   --font-serif: 'Cormorant Garamond', 'Times New Roman', serif;
   --font-sans: 'Montserrat', sans-serif;
-  --shadow-card: 0 10px 30px rgba(31, 26, 22, 0.12);
-  --shadow-hover: 0 18px 40px rgba(31, 26, 22, 0.22);
+  --shadow-card: 0 10px 30px rgba(29, 18, 10, 0.18);
+  --shadow-hover: 0 18px 40px rgba(29, 18, 10, 0.28);
 }
 
 * {
@@ -144,7 +144,7 @@ body {
   transform: translateY(-4px);
   box-shadow: var(--shadow-hover);
   border-color: var(--accent-gold);
-  background-color: #b3a388;
+  background-color: #ad7241;
 }
 
 .category-thumb {
@@ -193,7 +193,7 @@ body {
 .view-link {
   font-family: var(--font-sans);
   font-size: 0.8rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: var(--accent-gold);
@@ -215,7 +215,7 @@ footer {
   background-color: var(--bg-footer);
   border-top: 1px solid var(--border-tan);
   font-family: var(--font-sans);
-  color: var(--text-muted);
+  color: #ebdcc4;
   font-size: 0.85rem;
   letter-spacing: 1px;
 }
