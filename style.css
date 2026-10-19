@@ -2,18 +2,17 @@
    1. GLOBAL VARIABLES & BASE STYLES
    ========================================== */
 :root {
-  --bg-primary: #f2ebdf;       /* French limestone base */
-  --bg-card: #e8dfcf;          /* Warm sandstone parchment card */
-  --bg-header: #e2d7c3;        /* Warm gallery header tan */
-  --text-main: #2b241f;        /* Deep antique bronze/charcoal */
-  --text-muted: #6e6155;       /* Warm museum taupe */
+  --bg-primary: #baaa90;       /* Rich darker French tan base */
+  --bg-card: #ac9c82;          /* Deep sandstone parchment card */
+  --bg-footer: #a19177;        /* Darker museum footer tan */
+  --text-main: #1f1a16;        /* Deep antique bronze/charcoal */
+  --text-muted: #4a4037;       /* Dark warm taupe */
   --accent-gold: #c5a059;      /* French antique gold */
-  --accent-gold-hover: #dfb76c;
-  --border-tan: #d6c8b2;       /* Weathered stone border */
+  --border-tan: #998a72;       /* Weathered stone border */
   --font-serif: 'Cormorant Garamond', 'Times New Roman', serif;
   --font-sans: 'Montserrat', sans-serif;
-  --shadow-card: 0 10px 30px rgba(43, 36, 31, 0.07);
-  --shadow-hover: 0 18px 40px rgba(43, 36, 31, 0.14);
+  --shadow-card: 0 10px 30px rgba(31, 26, 22, 0.12);
+  --shadow-hover: 0 18px 40px rgba(31, 26, 22, 0.22);
 }
 
 * {
@@ -27,57 +26,11 @@ body {
   color: var(--text-main);
   font-family: var(--font-serif);
   line-height: 1.6;
-  transition: background-color 0.4s ease, color 0.4s ease;
   -webkit-font-smoothing: antialiased;
 }
 
 /* ==========================================
-   2. HEADER & NAVIGATION
-   ========================================== */
-header {
-  background-color: var(--bg-header);
-  border-bottom: 1px solid var(--border-tan);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  backdrop-filter: blur(8px);
-}
-
-.navbar {
-  display: flex;
-  justify-content: center; /* Centered navigation */
-  align-items: center;
-  padding: 1.4rem 8%;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 3rem;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: var(--text-main);
-  font-family: var(--font-sans);
-  font-size: 0.9rem;
-  font-weight: 500;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  padding-bottom: 6px;
-  transition: color 0.3s ease, border-bottom 0.3s ease;
-}
-
-.nav-links a:hover,
-.nav-links a.active {
-  color: var(--accent-gold);
-  border-bottom: 2px solid var(--accent-gold);
-}
-
-/* ==========================================
-   3. HERO BANNER
+   2. HERO BANNER (TOP & LEFT ALIGNED)
    ========================================== */
 .louvre-hero {
   position: relative;
@@ -86,7 +39,7 @@ header {
   min-height: 550px;
   background: url('images/louvre.jpg') center/cover no-repeat;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
 }
 
@@ -94,30 +47,30 @@ header {
   width: 100%;
   height: 100%;
   background: linear-gradient(
-    90deg,
+    135deg,
     rgba(22, 17, 13, 0.92) 0%,
-    rgba(22, 17, 13, 0.72) 50%,
-    rgba(22, 17, 13, 0.15) 100%
+    rgba(22, 17, 13, 0.65) 40%,
+    rgba(22, 17, 13, 0.1) 85%
   );
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
-  padding-left: 8%;
+  padding-left: 5%;
+  padding-top: 3.5rem;
 }
 
 .hero-content {
   color: #ebdcc4;
   max-width: 650px;
-  padding: 2rem 0;
 }
 
 .hero-content h1 {
   font-family: var(--font-serif);
-  font-size: 4.2rem;
+  font-size: 4.4rem;
   font-weight: 400;
   line-height: 1.1;
   letter-spacing: 1px;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1rem;
   color: #f7eee1;
   text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.9);
 }
@@ -128,34 +81,11 @@ header {
   font-style: italic;
   line-height: 1.6;
   color: #d9c8b0;
-  margin-bottom: 2.5rem;
   text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.8);
 }
 
-.cta-button {
-  display: inline-block;
-  padding: 1rem 2.4rem;
-  border: 1px solid var(--accent-gold);
-  color: #f7eee1;
-  text-decoration: none;
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  background: rgba(28, 22, 17, 0.65);
-  backdrop-filter: blur(4px);
-  transition: all 0.3s ease;
-}
-
-.cta-button:hover {
-  background: var(--accent-gold);
-  color: #1c1814;
-  box-shadow: 0 6px 20px rgba(197, 160, 89, 0.4);
-}
-
 /* ==========================================
-   4. CURATED EXHIBITIONS SECTION
+   3. CURATED EXHIBITIONS SECTION
    ========================================== */
 .categories-section {
   max-width: 1100px;
@@ -214,7 +144,7 @@ header {
   transform: translateY(-4px);
   box-shadow: var(--shadow-hover);
   border-color: var(--accent-gold);
-  background-color: #f7efe2;
+  background-color: #b3a388;
 }
 
 .category-thumb {
@@ -257,7 +187,7 @@ header {
   color: var(--text-muted);
   line-height: 1.6;
   margin: 0;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .view-link {
@@ -277,12 +207,12 @@ header {
 }
 
 /* ==========================================
-   5. FOOTER
+   4. FOOTER
    ========================================== */
 footer {
   text-align: center;
   padding: 3rem;
-  background-color: var(--bg-header);
+  background-color: var(--bg-footer);
   border-top: 1px solid var(--border-tan);
   font-family: var(--font-sans);
   color: var(--text-muted);
@@ -291,15 +221,16 @@ footer {
 }
 
 /* ==========================================
-   6. RESPONSIVE DESIGN
+   5. RESPONSIVE DESIGN
    ========================================== */
 @media (max-width: 768px) {
-  .nav-links {
-    gap: 1.5rem;
+  .louvre-hero {
+    height: 70vh;
   }
 
-  .louvre-hero {
-    height: 75vh;
+  .hero-overlay {
+    padding-left: 6%;
+    padding-top: 2rem;
   }
 
   .hero-content h1 {
