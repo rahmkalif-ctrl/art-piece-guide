@@ -26,6 +26,7 @@
   --ease-museum: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Fixed Universal Reset Selector */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -41,13 +42,36 @@ body {
 }
 
 /* ==========================================
-   2. TOP BAR & HERO BANNER
+   2. TOP NAVIGATION BAR & HERO BANNER
    ========================================== */
 .top-bar {
   width: 100%;
-  height: 28px;
-  background-color: var(--bg-primary);
+  background-color: var(--bg-footer);
   border-bottom: 1px solid var(--border-subtle);
+  padding: 0.8rem 2rem;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.navbar a {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-light);
+  text-decoration: none;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover,
+.navbar a.active {
+  color: var(--bg-primary);
 }
 
 .louvre-hero {
@@ -103,7 +127,7 @@ body {
 }
 
 /* ==========================================
-   3. CURATED EXHIBITIONS (EDITORIAL LIST)
+   3. CURATED EXHIBITIONS (HOMEPAGE LIST)
    ========================================== */
 .categories-section {
   max-width: 1100px;
@@ -213,249 +237,4 @@ body {
 
 .view-link {
   font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--text-main);
-  margin-left: 2rem;
-  white-space: nowrap;
-  opacity: 0.5;
-  transition: transform 0.35s var(--ease-museum), opacity 0.3s ease, color 0.3s ease;
-}
-
-.category-item:hover .view-link {
-  transform: translateX(8px);
-  opacity: 1;
-  color: var(--accent-gold);
-}
-
-/* ==========================================
-   4. ARTWORKS & ANALYSIS PAGE (artworks.html)
-   ========================================== */
-.gallery-container {
-  max-width: 1200px;
-  margin: 4rem auto;
-  padding: 0 2rem;
-}
-
-.page-header {
-  text-align: center;
-  margin-bottom: 5rem;
-}
-
-.page-header h1 {
-  font-family: var(--font-serif);
-  font-size: 3.6rem;
-  font-weight: 300;
-  letter-spacing: 2px;
-  color: var(--text-main);
-  margin-bottom: 0.8rem;
-}
-
-.page-subtitle {
-  font-family: var(--font-serif);
-  font-size: 1.25rem;
-  font-style: italic;
-  color: var(--text-muted);
-}
-
-.gold-divider {
-  width: 50px;
-  height: 1px;
-  background: var(--accent-gold);
-  margin: 1.5rem auto 0 auto;
-}
-
-.movement-section {
-  margin-bottom: 6rem;
-  scroll-margin-top: 2rem;
-}
-
-.movement-title {
-  font-family: var(--font-serif);
-  font-size: 2.4rem;
-  font-weight: 400;
-  color: var(--text-main);
-  margin-bottom: 0.4rem;
-  border-bottom: 1px solid var(--border-subtle);
-  padding-bottom: 0.5rem;
-}
-
-.movement-desc {
-  font-family: var(--font-serif);
-  font-style: italic;
-  color: var(--text-muted);
-  font-size: 1.1rem;
-  margin-bottom: 2.5rem;
-}
-
-.artwork-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-}
-
-.artwork-card {
-  display: flex;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-left: 4px solid var(--accent-gold);
-  border-radius: 2px;
-  overflow: hidden;
-  box-shadow: var(--shadow-ambient);
-  transition: transform 0.4s var(--ease-museum), box-shadow 0.4s var(--ease-museum);
-}
-
-.artwork-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-hover);
-}
-
-.artwork-image-container {
-  width: 42%;
-  flex-shrink: 0;
-  background: #1c150e;
-  overflow: hidden;
-  position: relative;
-  min-height: 320px;
-}
-
-.artwork-image-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s var(--ease-museum);
-}
-
-.artwork-card:hover .artwork-image-container img {
-  transform: scale(1.05);
-}
-
-.artwork-details {
-  padding: 2.2rem 2.8rem;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.artwork-meta {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--accent-gold);
-  margin-bottom: 0.5rem;
-}
-
-.artwork-title {
-  font-family: var(--font-serif);
-  font-size: 2.2rem;
-  font-weight: 600;
-  color: var(--text-main);
-  line-height: 1.2;
-  margin-bottom: 0.2rem;
-}
-
-.artwork-artist {
-  font-family: var(--font-serif);
-  font-size: 1.2rem;
-  font-style: italic;
-  color: var(--text-muted);
-  margin-bottom: 1.8rem;
-}
-
-.analysis-block {
-  margin-bottom: 1.2rem;
-}
-
-.analysis-block:last-child {
-  margin-bottom: 0;
-}
-
-.analysis-block h5 {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--text-main);
-  margin-bottom: 0.3rem;
-}
-
-.analysis-block p {
-  font-family: var(--font-sans);
-  font-size: 0.88rem;
-  color: var(--text-muted);
-  line-height: 1.6;
-}
-
-/* ==========================================
-   5. GROUNDED FOOTER
-   ========================================== */
-footer {
-  text-align: center;
-  padding: 3.5rem 2rem;
-  background-color: var(--bg-footer);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  font-family: var(--font-sans);
-  color: var(--text-light);
-  font-size: 0.8rem;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  opacity: 0.9;
-}
-
-/* ==========================================
-   6. RESPONSIVE DESIGN
-   ========================================== */
-@media (max-width: 900px) {
-  .artwork-card {
-    flex-direction: column;
-  }
-
-  .artwork-image-container {
-    width: 100%;
-    height: 260px;
-  }
-
-  .artwork-details {
-    padding: 1.8rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .louvre-hero {
-    height: 70vh;
-  }
-
-  .hero-overlay {
-    padding-left: 6%;
-    padding-top: 2rem;
-  }
-
-  .hero-content h1 {
-    font-size: 2.8rem;
-  }
-
-  .category-item {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 1.5rem 0.5rem;
-  }
-
-  .category-thumb {
-    width: 100%;
-    height: 180px;
-    margin-right: 0;
-    margin-bottom: 1.2rem;
-  }
-
-  .view-link {
-    margin-left: 0;
-    margin-top: 1rem;
-    align-self: flex-end;
-  }
-}
+  font-
