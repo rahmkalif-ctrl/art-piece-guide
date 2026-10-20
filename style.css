@@ -26,7 +26,7 @@
   --ease-museum: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Universal Reset */
+/* Correct Universal Reset */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -49,7 +49,7 @@ body {
 }
 
 /* ==========================================
-   2. TOP NAVIGATION BAR & HERO BANNER
+   2. TOP NAVIGATION BAR & HERO BANNERS
    ========================================== */
 .top-bar {
   width: 100%;
@@ -82,7 +82,7 @@ body {
   color: var(--bg-primary);
 }
 
-/* Louvre Hero Banner - Focal point adjusted to display the statue head */
+/* Louvre Homepage Hero Banner */
 .louvre-hero {
   position: relative;
   width: 100%;
@@ -136,8 +136,43 @@ body {
   text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.8);
 }
 
+/* Dedicated Banners for Category Pages */
+.category-hero {
+  position: relative;
+  width: 100%;
+  height: 35vh;
+  min-height: 260px;
+  max-height: 380px;
+  background-size: cover;
+  background-position: center 25%;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.category-hero .hero-overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(22, 17, 13, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.category-hero h1 {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  font-weight: 300;
+  color: #f7eee1;
+  letter-spacing: 2px;
+  text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.8);
+}
+
 /* ==========================================
-   3. CURATED EXHIBITIONS (HOMEPAGE LIST)
+   3. CURATED EXHIBITIONS (HOMEPAGE INDEX)
    ========================================== */
 .categories-section {
   max-width: 1100px;
@@ -206,3 +241,118 @@ body {
   background-color: var(--bg-card);
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.category-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  transition: transform 0.6s var(--ease-museum), filter 0.4s ease;
+  filter: brightness(0.95);
+}
+
+.category-item:hover .category-thumb img {
+  transform: scale(1.08);
+  filter: brightness(1.02);
+}
+
+.category-info {
+  flex-grow: 1;
+}
+
+.category-info h3 {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--text-main);
+  letter-spacing: 0.5px;
+  margin-bottom: 0.3rem;
+  transition: color 0.3s ease;
+}
+
+.category-item:hover .category-info h3 {
+  color: var(--accent-gold);
+}
+
+.category-info p {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  font-weight: 400;
+  max-width: 650px;
+}
+
+.view-link {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-main);
+  margin-left: 2rem;
+  white-space: nowrap;
+  opacity: 0.5;
+  transition: transform 0.35s var(--ease-museum), opacity 0.3s ease, color 0.3s ease;
+}
+
+.category-item:hover .view-link {
+  transform: translateX(8px);
+  opacity: 1;
+  color: var(--accent-gold);
+}
+
+/* ==========================================
+   4. CATEGORY EXHIBITION PAGES (ARTWORK CARDS)
+   ========================================== */
+.gallery-container {
+  max-width: 1100px;
+  margin: 3rem auto 6rem auto;
+  padding: 0 2rem;
+}
+
+.gallery-container h1 {
+  font-family: var(--font-serif);
+  font-size: 3.2rem;
+  font-weight: 300;
+  text-align: center;
+  letter-spacing: 2px;
+  color: var(--text-main);
+  margin-bottom: 3rem;
+}
+
+.gallery-container h1::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 1px;
+  background: var(--accent-gold);
+  margin: 1rem auto 0 auto;
+}
+
+.artwork-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-left: 4px solid var(--accent-gold);
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: var(--shadow-ambient);
+  margin-bottom: 3rem;
+  transition: transform 0.4s var(--ease-museum), box-shadow 0.4s var(--ease-museum);
+}
+
+.artwork-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.artwork-image,
+.artwork-image-container {
+  width: 100%;
+  height: 380px;
+  background: var(--bg-card);
+  display: flex;
