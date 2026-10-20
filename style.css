@@ -26,7 +26,7 @@
   --ease-museum: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Correct Universal Reset */
+/* Universal Reset */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -82,7 +82,7 @@ body {
   color: var(--bg-primary);
 }
 
-/* Louvre Hero Banner — Shifted focus down (15%) to prevent cropping the statue */
+/* Louvre Hero Banner - Focal point adjusted to display the statue head */
 .louvre-hero {
   position: relative;
   width: 100%;
@@ -137,7 +137,7 @@ body {
 }
 
 /* ==========================================
-   3. CURATED EXHIBITIONS (HOMEPAGE INDEX)
+   3. CURATED EXHIBITIONS (HOMEPAGE LIST)
    ========================================== */
 .categories-section {
   max-width: 1100px;
@@ -206,55 +206,3 @@ body {
   background-color: var(--bg-card);
   display: flex;
   justify-content: center;
-  align-items: center;
-}
-
-.category-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 20%;
-  transition: transform 0.6s var(--ease-museum), filter 0.4s ease;
-  filter: brightness(0.95);
-}
-
-.category-item:hover .category-thumb img {
-  transform: scale(1.08);
-  filter: brightness(1.02);
-}
-
-.category-info {
-  flex-grow: 1;
-}
-
-.category-info h3 {
-  font-family: var(--font-serif);
-  font-size: 1.8rem;
-  font-weight: 400;
-  color: var(--text-main);
-  letter-spacing: 0.5px;
-  margin-bottom: 0.3rem;
-  transition: color 0.3s ease;
-}
-
-.category-item:hover .category-info h3 {
-  color: var(--accent-gold);
-}
-
-.category-info p {
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  line-height: 1.5;
-  font-weight: 400;
-  max-width: 650px;
-}
-
-.view-link {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--text-main);
-  margin-left:
