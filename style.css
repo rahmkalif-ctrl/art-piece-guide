@@ -2,38 +2,27 @@
    1. GLOBAL VARIABLES & ARCHITECTURAL PALETTE
    ========================================== */
 :root {
-  /* Sandstone Hierarchy */
-  --bg-primary: #d8be91;       /* Natural warm sandstone base */
-  --bg-card: #e5cfaa;          /* Lighter parchment card tone */
-  --bg-footer: #3d2f22;        /* Dark espresso footer */
-  
-  /* Text & Contrast */
-  --text-main: #1c150e;        /* Deep antique charcoal */
-  --text-muted: #4e3f30;       /* Muted dark taupe */
-  --text-light: #f7eee1;       /* Cream tone for dark backgrounds */
-  
-  /* Metallic Accents & Hairline Borders */
-  --accent-gold: #8c6328;      /* Deep antique gold accent */
-  --border-subtle: rgba(78, 63, 48, 0.22); /* Fine stone divider line */
-  
-  /* Typography */
+  --bg-primary: #d8be91;
+  --bg-card: #e5cfaa;
+  --bg-footer: #3d2f22;
+  --text-main: #1c150e;
+  --text-muted: #4e3f30;
+  --text-light: #f7eee1;
+  --accent-gold: #8c6328;
+  --border-subtle: rgba(78, 63, 48, 0.22);
   --font-serif: 'Cormorant Garamond', 'Times New Roman', serif;
   --font-sans: 'Montserrat', sans-serif;
-  
-  /* Elevation & Motion Parameters */
   --shadow-ambient: 0 12px 32px -4px rgba(28, 21, 14, 0.12);
   --shadow-hover: 0 20px 45px -8px rgba(28, 21, 14, 0.22);
   --ease-museum: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Correct Universal Reset */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* Global Responsive Images */
 img {
   max-width: 100%;
   height: auto;
@@ -49,7 +38,7 @@ body {
 }
 
 /* ==========================================
-   2. TOP NAVIGATION BAR & HERO BANNERS
+   2. TOP NAVIGATION & HERO BANNERS
    ========================================== */
 .top-bar {
   width: 100%;
@@ -82,7 +71,6 @@ body {
   color: var(--bg-primary);
 }
 
-/* Louvre Hero Banner — Statue Head Framing */
 .louvre-hero {
   position: relative;
   width: 100%;
@@ -139,7 +127,6 @@ body {
   text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.8);
 }
 
-/* Dedicated Banners for Category Pages */
 .category-hero {
   position: relative;
   width: 100%;
@@ -175,7 +162,7 @@ body {
 }
 
 /* ==========================================
-   3. CURATED EXHIBITIONS (HOMEPAGE INDEX)
+   3. CURATED EXHIBITIONS
    ========================================== */
 .categories-section {
   max-width: 1100px;
@@ -308,7 +295,7 @@ body {
 }
 
 /* ==========================================
-   4. CATEGORY EXHIBITION PAGES (ARTWORK CARDS)
+   4. ARTWORK CARDS
    ========================================== */
 .gallery-container {
   max-width: 1100px;
@@ -340,4 +327,224 @@ body {
   flex-direction: column;
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
-  border-left: 4px solid var(--accent
+  border-left: 4px solid var(--accent-gold);
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: var(--shadow-ambient);
+  margin-bottom: 3rem;
+  transition: transform 0.4s var(--ease-museum), box-shadow 0.4s var(--ease-museum);
+}
+
+.artwork-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.artwork-image,
+.artwork-image-container {
+  width: 100%;
+  height: 380px;
+  background: var(--bg-card);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  flex-shrink: 0;
+  padding: 1rem;
+}
+
+.artwork-image img,
+.artwork-image-container img {
+  width: 100%;
+  height: 100%;
+  max-height: 360px;
+  object-fit: contain;
+  transition: transform 0.6s var(--ease-museum);
+}
+
+.artwork-card:hover .artwork-image img,
+.artwork-card:hover .artwork-image-container img {
+  transform: scale(1.03);
+}
+
+.artwork-details {
+  padding: 2.2rem 2.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.artwork-details h2 {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.2;
+  margin-bottom: 0.4rem;
+}
+
+.artist-info {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.analysis {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* ==========================================
+   5. INTERACTIVE STUDIO STYLES
+   ========================================== */
+.studio-section {
+  max-width: 1100px;
+  margin: 4rem auto;
+  padding: 2.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 2px;
+  box-shadow: var(--shadow-ambient);
+}
+
+.studio-section h2 {
+  font-family: var(--font-serif);
+  font-size: 2.8rem;
+  font-weight: 300;
+  text-align: center;
+  color: var(--text-main);
+  margin-bottom: 0.5rem;
+}
+
+.studio-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 2rem;
+  align-items: center;
+}
+
+.canvas-wrapper {
+  border: 2px solid var(--border-subtle);
+  background-color: #ffffff;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+  cursor: crosshair;
+}
+
+#artCanvas {
+  display: block;
+}
+
+.studio-controls {
+  flex-grow: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.control-group label {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-main);
+}
+
+.control-group input[type="text"],
+.control-group input[type="range"] {
+  padding: 0.6rem;
+  border: 1px solid var(--border-subtle);
+  background-color: var(--bg-primary);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--text-main);
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 0.8rem 1.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+  background-color: var(--bg-footer);
+  color: var(--text-light);
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-gold);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+@media (min-width: 850px) {
+  .artwork-card {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .artwork-image,
+  .artwork-image-container {
+    width: 40%;
+    min-width: 40%;
+    max-width: 40%;
+    height: auto;
+    min-height: 380px;
+  }
+
+  .artwork-details {
+    width: 60%;
+  }
+
+  .studio-container {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+footer {
+  text-align: center;
+  padding: 3.5rem 2rem;
+  background-color: var(--bg-footer);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: var(--font-sans);
+  color: var(--text-light);
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
