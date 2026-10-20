@@ -26,7 +26,7 @@
   --ease-museum: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Universal Reset */
+/* Correct Universal Reset */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -82,17 +82,17 @@ body {
   color: var(--bg-primary);
 }
 
-/* Louvre Hero Banner - Right-Top alignment keeps statue in frame */
+/* Louvre Homepage Hero Banner - Full Statue Head Framing */
 .louvre-hero {
   position: relative;
   width: 100%;
-  height: 50vh;
-  min-height: 420px;
-  max-height: 580px;
+  height: 65vh;
+  min-height: 480px;
+  max-height: 650px;
   background-image: url('images/louvre.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: right top;
+  background-position: center 2%;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -103,15 +103,15 @@ body {
   height: 100%;
   background: linear-gradient(
     135deg,
-    rgba(22, 17, 13, 0.92) 0%,
-    rgba(22, 17, 13, 0.65) 40%,
-    rgba(22, 17, 13, 0.1) 85%
+    rgba(22, 17, 13, 0.88) 0%,
+    rgba(22, 17, 13, 0.55) 45%,
+    rgba(22, 17, 13, 0.05) 85%
   );
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
   padding-left: 5%;
-  padding-top: 3.5rem;
+  padding-top: 4rem;
 }
 
 .hero-content {
@@ -242,260 +242,4 @@ body {
   margin-right: 2.5rem;
   border: 1px solid var(--border-subtle);
   background-color: var(--bg-card);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.category-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 20%;
-  transition: transform 0.6s var(--ease-museum), filter 0.4s ease;
-  filter: brightness(0.95);
-}
-
-.category-item:hover .category-thumb img {
-  transform: scale(1.08);
-  filter: brightness(1.02);
-}
-
-.category-info {
-  flex-grow: 1;
-}
-
-.category-info h3 {
-  font-family: var(--font-serif);
-  font-size: 1.8rem;
-  font-weight: 400;
-  color: var(--text-main);
-  letter-spacing: 0.5px;
-  margin-bottom: 0.3rem;
-  transition: color 0.3s ease;
-}
-
-.category-item:hover .category-info h3 {
-  color: var(--accent-gold);
-}
-
-.category-info p {
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  line-height: 1.5;
-  font-weight: 400;
-  max-width: 650px;
-}
-
-.view-link {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--text-main);
-  margin-left: 2rem;
-  white-space: nowrap;
-  opacity: 0.5;
-  transition: transform 0.35s var(--ease-museum), opacity 0.3s ease, color 0.3s ease;
-}
-
-.category-item:hover .view-link {
-  transform: translateX(8px);
-  opacity: 1;
-  color: var(--accent-gold);
-}
-
-/* ==========================================
-   4. CATEGORY EXHIBITION PAGES (ARTWORK CARDS)
-   ========================================== */
-.gallery-container {
-  max-width: 1100px;
-  margin: 3rem auto 6rem auto;
-  padding: 0 2rem;
-}
-
-.gallery-container h1 {
-  font-family: var(--font-serif);
-  font-size: 3.2rem;
-  font-weight: 300;
-  text-align: center;
-  letter-spacing: 2px;
-  color: var(--text-main);
-  margin-bottom: 3rem;
-}
-
-.gallery-container h1::after {
-  content: '';
-  display: block;
-  width: 50px;
-  height: 1px;
-  background: var(--accent-gold);
-  margin: 1rem auto 0 auto;
-}
-
-.artwork-card {
-  display: flex;
-  flex-direction: column;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-left: 4px solid var(--accent-gold);
-  border-radius: 2px;
-  overflow: hidden;
-  box-shadow: var(--shadow-ambient);
-  margin-bottom: 3rem;
-  transition: transform 0.4s var(--ease-museum), box-shadow 0.4s var(--ease-museum);
-}
-
-.artwork-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-hover);
-}
-
-.artwork-image,
-.artwork-image-container {
-  width: 100%;
-  height: 380px;
-  background: var(--bg-card);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  flex-shrink: 0;
-  padding: 1rem;
-}
-
-.artwork-image img,
-.artwork-image-container img {
-  width: 100%;
-  height: 100%;
-  max-height: 360px;
-  object-fit: contain;
-  transition: transform 0.6s var(--ease-museum);
-}
-
-.artwork-card:hover .artwork-image img,
-.artwork-card:hover .artwork-image-container img {
-  transform: scale(1.03);
-}
-
-.artwork-details {
-  padding: 2.2rem 2.8rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex-grow: 1;
-}
-
-.artwork-details h2 {
-  font-family: var(--font-serif);
-  font-size: 2.2rem;
-  font-weight: 600;
-  color: var(--text-main);
-  line-height: 1.2;
-  margin-bottom: 0.4rem;
-}
-
-.artist-info {
-  font-family: var(--font-serif);
-  font-size: 1.15rem;
-  font-style: italic;
-  color: var(--text-muted);
-  margin-bottom: 1.5rem;
-}
-
-.analysis {
-  font-family: var(--font-sans);
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  line-height: 1.65;
-}
-
-/* Desktop Side-by-Side Layout */
-@media (min-width: 850px) {
-  .artwork-card {
-    flex-direction: row;
-    align-items: stretch;
-  }
-
-  .artwork-image,
-  .artwork-image-container {
-    width: 40%;
-    min-width: 40%;
-    max-width: 40%;
-    height: auto;
-    min-height: 380px;
-  }
-
-  .artwork-details {
-    width: 60%;
-  }
-}
-
-/* Widescreen Hero Ratio Adjustment */
-@media (min-width: 1200px) {
-  .louvre-hero {
-    height: 45vh;
-    background-position: right 5%;
-  }
-}
-
-/* ==========================================
-   5. FOOTER & MOBILE RESPONSIVENESS
-   ========================================== */
-footer {
-  text-align: center;
-  padding: 3.5rem 2rem;
-  background-color: var(--bg-footer);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  font-family: var(--font-sans);
-  color: var(--text-light);
-  font-size: 0.8rem;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  opacity: 0.9;
-}
-
-@media (max-width: 768px) {
-  .louvre-hero {
-    height: 45vh;
-    min-height: 320px;
-  }
-
-  .hero-overlay {
-    padding-left: 6%;
-    padding-top: 2rem;
-  }
-
-  .hero-content h1 {
-    font-size: 2.5rem;
-  }
-
-  .category-item {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 1.5rem 0.5rem;
-  }
-
-  .category-thumb {
-    width: 100%;
-    height: 200px;
-    margin-right: 0;
-    margin-bottom: 1.2rem;
-  }
-
-  .view-link {
-    margin-left: 0;
-    margin-top: 1rem;
-    align-self: flex-end;
-  }
-
-  .navbar {
-    gap: 1rem;
-  }
-
-  .artwork-details {
-    padding: 1.5rem;
-  }
-}
+  display
