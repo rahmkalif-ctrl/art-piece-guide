@@ -104,4 +104,40 @@
             <input type="color" id="brushColor" value="#1c150e">
           </div>
 
-          <div class="control
+          <div class="control-group">
+            <label for="brushSize">Brush Size:</label>
+            <input type="range" id="brushSize" min="1" max="30" value="5">
+          </div>
+
+          <div class="control-group">
+            <label for="artTitle">Artwork Title:</label>
+            <input type="text" id="artTitle" placeholder="e.g., Sunset over Seine">
+          </div>
+
+          <div class="control-group">
+            <label for="artistName">Your Name:</label>
+            <input type="text" id="artistName" placeholder="e.g., Claude M.">
+          </div>
+
+          <div class="button-group">
+            <button id="clearBtn" type="button" class="btn-secondary">Clear Canvas</button>
+            <button id="publishBtn" type="button" class="btn-primary">Add to Gallery</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dynamic Community Exhibition Gallery -->
+    <section class="gallery-container" id="communityGallery" style="display: none;">
+      <h1>Community Creations</h1>
+      <div id="communityCards"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Virtual Art Gallery. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
