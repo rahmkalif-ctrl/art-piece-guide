@@ -17,6 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
   let isDrawing = false;
   let isEraser = false;
 
+  // Key used to store artwork in browser memory
+  const STORAGE_KEY = 'community_artworks_gallery';
+
   // Initialize white canvas background
   function initCanvas() {
     ctx.fillStyle = '#ffffff';
@@ -25,13 +28,74 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   initCanvas();
 
+  // Helper function to render an artwork card into the DOM
+  function renderArtworkCard(art, prepend = true) {
+    const card = document.createElement('article');
+    card.className = 'artwork-card';
+    card.innerHTML = `
+      <div class="artwork-image">
+        <img src="${art.dataUrl}" alt="${art.title}">
+      </div>
+      <div class="artwork-details">
+        <h2>${art.title}</h2>
+        <p class="artist-info"><strong>Artist:</strong> ${art.artist} (${art.year || '2026'}) — Community Creation</p>
+        <p class="analysis">
+          <strong>Artist Context & Historical Analysis:</strong> An original digital creation crafted by a visitor in the Virtual Gallery studio using custom digital brush techniques.
+        </p>
+      </div>
+    `;
+
+    if (prepend) {
+      communityCards.prepend(card);
+    } else {
+      communityCards.appendChild(card);
+    }
+
+    return card;
+  }
+
+  // Load and display all previously saved artworks from localStorage
+  function loadSavedArtworks() {
+    const savedData = localStorage.getItem(STORAGE_KEY);
+    if (!savedData) return;
+
+    try {
+      const artworks = JSON.parse(savedData);
+      if (Array.isArray(artworks) && artworks.length > 0) {
+        communityGallery.style.display = 'block';
+        communityCards.innerHTML = ''; // Clear gallery container before loading
+        artworks.forEach(art => renderArtworkCard(art, false));
+      }
+    } catch (e) {
+      console.error("Error loading saved artworks:", e);
+    }
+  }
+
+  // Save a newly submitted artwork to localStorage
+  function saveArtworkToStorage(artObject) {
+    let artworks = [];
+    const savedData = localStorage.getItem(STORAGE_KEY);
+    if (savedData) {
+      try {
+        artworks = JSON.parse(savedData);
+      } catch (e) {
+        artworks = [];
+      }
+    }
+    artworks.unshift(artObject); // Place newest artwork first
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(artworks));
+  }
+
+  // Restore saved creations on initial page load
+  loadSavedArtworks();
+
   // Switch to Brush Mode
   if (drawBtn) {
     drawBtn.addEventListener('click', () => {
       isEraser = false;
       drawBtn.classList.add('active-tool');
       if (eraserBtn) eraserBtn.classList.remove('active-tool');
-      ctx.beginPath(); // Reset path buffer
+      ctx.beginPath();
     });
   }
 
@@ -41,11 +105,11 @@ document.addEventListener('DOMContentLoaded', () => {
       isEraser = true;
       eraserBtn.classList.add('active-tool');
       if (drawBtn) drawBtn.classList.remove('active-tool');
-      ctx.beginPath(); // Reset path buffer
+      ctx.beginPath();
     });
   }
 
-  // Calculate precise cursor position relative to canvas scaling
+  // Get precise cursor position on the canvas
   function getCoordinates(e) {
     const rect = canvas.getBoundingClientRect();
     const scaleX = canvas.width / rect.width;
@@ -56,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 
-  // Start Stroke
+  // Start Drawing / Erasing
   function startDrawing(e) {
     isDrawing = true;
     const pos = getCoordinates(e);
@@ -64,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.moveTo(pos.x, pos.y);
   }
 
-  // Execute Drawing / Erasing
+  // Drawing Execution
   function draw(e) {
     if (!isDrawing) return;
     e.preventDefault();
@@ -75,15 +139,13 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.lineWidth = brushSize ? brushSize.value : 5;
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
-    
-    // Use white stroke for eraser mode against white canvas background
     ctx.strokeStyle = isEraser ? '#ffffff' : (brushColor ? brushColor.value : '#1c150e');
 
     ctx.lineTo(pos.x, pos.y);
     ctx.stroke();
   }
 
-  // End Stroke
+  // Stop Drawing
   function stopDrawing() {
     if (isDrawing) {
       isDrawing = false;
@@ -91,49 +153,45 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Universal Pointer Events (Mouse, Trackpad, Touch, Stylus)
+  // Universal Event Listeners (Mouse, Touch, Trackpad, Stylus)
   canvas.addEventListener('pointerdown', startDrawing);
   canvas.addEventListener('pointermove', draw);
   canvas.addEventListener('pointerup', stopDrawing);
   canvas.addEventListener('pointerleave', stopDrawing);
 
-  // Clear Canvas
+  // Clear Canvas Button
   if (clearBtn) {
     clearBtn.addEventListener('click', initCanvas);
   }
 
-  // Publish Drawing
+  // Publish Drawing to Gallery and Save to LocalStorage
   if (publishBtn) {
     publishBtn.addEventListener('click', () => {
       const title = artTitleInput ? artTitleInput.value.trim() || 'Untitled Piece' : 'Untitled Piece';
       const artist = artistNameInput ? artistNameInput.value.trim() || 'Anonymous Artist' : 'Anonymous Artist';
       const dataUrl = canvas.toDataURL('image/png');
 
-      const card = document.createElement('article');
-      card.className = 'artwork-card';
-      card.innerHTML = `
-        <div class="artwork-image">
-          <img src="${dataUrl}" alt="${title}">
-        </div>
-        <div class="artwork-details">
-          <h2>${title}</h2>
-          <p class="artist-info"><strong>Artist:</strong> ${artist} (2026) — Community Creation</p>
-          <p class="analysis">
-            <strong>Artist Context & Historical Analysis:</strong> An original digital creation crafted by a visitor in the Virtual Gallery studio using custom digital brush techniques.
-          </p>
-        </div>
-      `;
+      const artObject = {
+        title: title,
+        artist: artist,
+        dataUrl: dataUrl,
+        year: '2026'
+      };
 
-      if (communityGallery && communityCards) {
-        communityGallery.style.display = 'block';
-        communityCards.prepend(card);
+      // 1. Save to browser storage
+      saveArtworkToStorage(artObject);
 
-        if (artTitleInput) artTitleInput.value = '';
-        if (artistNameInput) artistNameInput.value = '';
-        initCanvas();
+      // 2. Render card in the gallery
+      communityGallery.style.display = 'block';
+      const newCard = renderArtworkCard(artObject, true);
 
-        card.scrollIntoView({ behavior: 'smooth' });
-      }
+      // 3. Reset studio form and canvas
+      if (artTitleInput) artTitleInput.value = '';
+      if (artistNameInput) artistNameInput.value = '';
+      initCanvas();
+
+      // 4. Smooth scroll to the newly published artwork
+      newCard.scrollIntoView({ behavior: 'smooth' });
     });
   }
 });
