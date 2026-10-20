@@ -22,6 +22,7 @@
   </header>
 
   <main>
+    <!-- Hero Banner -->
     <section class="louvre-hero">
       <div class="hero-overlay">
         <div class="hero-content">
@@ -31,6 +32,7 @@
       </div>
     </section>
 
+    <!-- Curated Exhibitions -->
     <section id="categories" class="categories-section">
       <h2>Curated Exhibitions</h2>
       <p class="section-intro">Select a movement to view iconic masterpieces and detailed historical analysis:</p>
@@ -63,7 +65,7 @@
         <!-- Category 3 -->
         <a href="impressionism.html" class="category-item">
           <div class="category-thumb">
-            <img src="images/japanese footbridge.jpeg" alt="Impressionism">
+            <img src="images/japanese%20footbridge.jpeg" alt="Impressionism">
           </div>
           <div class="category-info">
             <h3>3. Impressionism</h3>
@@ -85,12 +87,21 @@
         </a>
       </div>
     </section>
-  </main>
 
-  <footer>
-    <p>&copy; 2026 Virtual Art Gallery. All rights reserved.</p>
-  </footer>
+    <!-- Interactive Art Studio -->
+    <section class="studio-section">
+      <h2>Community Art Studio</h2>
+      <p class="section-intro">Create your own artwork and display it in the gallery below!</p>
 
-  <script src="script.js"></script>
-</body>
-</html>
+      <div class="studio-container">
+        <div class="canvas-wrapper">
+          <canvas id="artCanvas" width="500" height="350"></canvas>
+        </div>
+
+        <div class="studio-controls">
+          <div class="control-group">
+            <label for="brushColor">Brush Color:</label>
+            <input type="color" id="brushColor" value="#1c150e">
+          </div>
+
+          <div class="control
