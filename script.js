@@ -1,96 +1,114 @@
 document.addEventListener('DOMContentLoaded', () => {
   const canvas = document.getElementById('artCanvas');
+  if (!canvas) return;
+
   const ctx = canvas.getContext('2d');
-  
   const brushColor = document.getElementById('brushColor');
   const brushSize = document.getElementById('brushSize');
   const clearBtn = document.getElementById('clearBtn');
   const publishBtn = document.getElementById('publishBtn');
   const artTitleInput = document.getElementById('artTitle');
   const artistNameInput = document.getElementById('artistName');
-  
   const communityGallery = document.getElementById('communityGallery');
   const communityCards = document.getElementById('communityCards');
 
   let isDrawing = false;
 
-  // Set white canvas background on load
-  ctx.fillStyle = '#ffffff';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  // Drawing Event Listeners
-  canvas.addEventListener('mousedown', startDrawing);
-  canvas.addEventListener('mousemove', draw);
-  canvas.addEventListener('mouseup', stopDrawing);
-  canvas.addEventListener('mouseleave', stopDrawing);
-
-  function startDrawing(e) {
-    isDrawing = true;
-    draw(e);
-  }
-
-  function draw(e) {
-    if (!isDrawing) return;
-
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    ctx.lineWidth = brushSize.value;
-    ctx.lineCap = 'round';
-    ctx.strokeStyle = brushColor.value;
-
-    ctx.lineTo(x, y);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-  }
-
-  function stopDrawing() {
-    isDrawing = false;
-    ctx.beginPath();
-  }
-
-  // Clear Canvas
-  clearBtn.addEventListener('click', () => {
+  // Initialize white canvas background
+  function initCanvas() {
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-  });
+  }
+  initCanvas();
 
-  // Publish Drawing as a New Artwork Card
-  publishBtn.addEventListener('click', () => {
-    const title = artTitleInput.value.trim() || 'Untitled Piece';
-    const artist = artistNameInput.value.trim() || 'Anonymous Artist';
+  // Helper to get precise mouse / pointer coordinates on the canvas
+  function getCoordinates(e) {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    return {
+      x: (e.clientX - rect.left) * scaleX,
+      y: (e.clientY - rect.top) * scaleY
+    };
+  }
+
+  // Start Drawing
+  function startDrawing(e) {
+    isDrawing = true;
+    const pos = getCoordinates(e);
+    ctx.beginPath();
+    ctx.moveTo(pos.x, pos.y);
+  }
+
+  // Draw Line
+  function draw(e) {
+    if (!isDrawing) return;
     
-    // Convert canvas content to image Data URL
-    const dataUrl = canvas.toDataURL('image/png');
+    // Prevent default touch scrolling behavior while drawing on mobile/touch
+    e.preventDefault();
 
-    // Create new artwork card
-    const card = document.createElement('article');
-    card.className = 'artwork-card';
-    card.innerHTML = `
-      <div class="artwork-image">
-        <img src="${dataUrl}" alt="${title}">
-      </div>
-      <div class="artwork-details">
-        <h2>${title}</h2>
-        <p class="artist-info"><strong>Artist:</strong> ${artist} (2026) — Community Creation</p>
-        <p class="analysis">
-          <strong>Artist Context & Historical Analysis:</strong> An original digital creation crafted by a visitor in the Virtual Gallery studio using custom digital brush techniques.
-        </p>
-      </div>
-    `;
+    const pos = getCoordinates(e);
 
-    // Unhide the community gallery section and insert card
-    communityGallery.style.display = 'block';
-    communityCards.prepend(card);
+    ctx.lineWidth = brushSize ? brushSize.value : 5;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.strokeStyle = brushColor ? brushColor.value : '#1c150e';
 
-    // Reset inputs and clear canvas
-    artTitleInput.value = '';
-    artistNameInput.value = '';
-    clearBtn.click();
+    ctx.lineTo(pos.x, pos.y);
+    ctx.stroke();
+  }
 
-    // Scroll smoothly to the newly added piece
-    card.scrollIntoView({ behavior: 'smooth' });
-  });
+  // Stop Drawing
+  function stopDrawing() {
+    if (isDrawing) {
+      isDrawing = false;
+      ctx.closePath();
+    }
+  }
+
+  // Universal Pointer Event Listeners (Works for Mouse, Trackpad, Touch, and Stylus)
+  canvas.addEventListener('pointerdown', startDrawing);
+  canvas.addEventListener('pointermove', draw);
+  canvas.addEventListener('pointerup', stopDrawing);
+  canvas.addEventListener('pointerleave', stopDrawing);
+
+  // Clear Canvas Button
+  if (clearBtn) {
+    clearBtn.addEventListener('click', initCanvas);
+  }
+
+  // Publish Artwork to Gallery
+  if (publishBtn) {
+    publishBtn.addEventListener('click', () => {
+      const title = artTitleInput.value.trim() || 'Untitled Piece';
+      const artist = artistNameInput.value.trim() || 'Anonymous Artist';
+      const dataUrl = canvas.toDataURL('image/png');
+
+      const card = document.createElement('article');
+      card.className = 'artwork-card';
+      card.innerHTML = `
+        <div class="artwork-image">
+          <img src="${dataUrl}" alt="${title}">
+        </div>
+        <div class="artwork-details">
+          <h2>${title}</h2>
+          <p class="artist-info"><strong>Artist:</strong> ${artist} (2026) — Community Creation</p>
+          <p class="analysis">
+            <strong>Artist Context & Historical Analysis:</strong> An original digital creation crafted by a visitor in the Virtual Gallery studio using custom digital brush techniques.
+          </p>
+        </div>
+      `;
+
+      if (communityGallery && communityCards) {
+        communityGallery.style.display = 'block';
+        communityCards.prepend(card);
+
+        artTitleInput.value = '';
+        artistNameInput.value = '';
+        initCanvas();
+
+        card.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  }
 });
