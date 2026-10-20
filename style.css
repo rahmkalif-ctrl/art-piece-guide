@@ -2,27 +2,38 @@
    1. GLOBAL VARIABLES & ARCHITECTURAL PALETTE
    ========================================== */
 :root {
-  --bg-primary: #d8be91;
-  --bg-card: #e5cfaa;
-  --bg-footer: #3d2f22;
-  --text-main: #1c150e;
-  --text-muted: #4e3f30;
-  --text-light: #f7eee1;
-  --accent-gold: #8c6328;
-  --border-subtle: rgba(78, 63, 48, 0.22);
+  /* Sandstone Hierarchy */
+  --bg-primary: #d8be91;       /* Natural warm sandstone base */
+  --bg-card: #e5cfaa;          /* Lighter parchment card tone */
+  --bg-footer: #3d2f22;        /* Dark espresso footer */
+  
+  /* Text & Contrast */
+  --text-main: #1c150e;        /* Deep antique charcoal */
+  --text-muted: #4e3f30;       /* Muted dark taupe */
+  --text-light: #f7eee1;       /* Cream tone for dark backgrounds */
+  
+  /* Metallic Accents & Hairline Borders */
+  --accent-gold: #8c6328;      /* Deep antique gold accent */
+  --border-subtle: rgba(78, 63, 48, 0.22); /* Fine stone divider line */
+  
+  /* Typography */
   --font-serif: 'Cormorant Garamond', 'Times New Roman', serif;
   --font-sans: 'Montserrat', sans-serif;
+  
+  /* Elevation & Motion Parameters */
   --shadow-ambient: 0 12px 32px -4px rgba(28, 21, 14, 0.12);
   --shadow-hover: 0 20px 45px -8px rgba(28, 21, 14, 0.22);
   --ease-museum: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Universal Reset */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/* Global Responsive Images */
 img {
   max-width: 100%;
   height: auto;
@@ -430,6 +441,9 @@ body {
 }
 
 .canvas-wrapper {
+  position: relative;
+  z-index: 10;
+  touch-action: none;
   border: 2px solid var(--border-subtle);
   background-color: #ffffff;
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
