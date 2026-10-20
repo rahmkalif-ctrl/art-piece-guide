@@ -26,7 +26,7 @@
   --ease-museum: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Universal Reset */
+/* Correct Universal Reset */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -340,12 +340,4 @@ body {
   flex-direction: column;
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
-  border-left: 4px solid var(--accent-gold);
-  border-radius: 2px;
-  overflow: hidden;
-  box-shadow: var(--shadow-ambient);
-  margin-bottom: 3rem;
-  transition: transform 0.4s var(--ease-museum), box-shadow 0.4s var(--ease-museum);
-}
-
-.artwork-card:
+  border-left: 4px solid var(--accent
