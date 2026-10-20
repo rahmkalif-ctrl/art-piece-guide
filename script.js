@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const ctx = canvas.getContext('2d');
   const brushColor = document.getElementById('brushColor');
   const brushSize = document.getElementById('brushSize');
+  const drawBtn = document.getElementById('drawBtn');
+  const eraserBtn = document.getElementById('eraserBtn');
   const clearBtn = document.getElementById('clearBtn');
   const publishBtn = document.getElementById('publishBtn');
   const artTitleInput = document.getElementById('artTitle');
@@ -13,15 +15,37 @@ document.addEventListener('DOMContentLoaded', () => {
   const communityCards = document.getElementById('communityCards');
 
   let isDrawing = false;
+  let isEraser = false;
 
   // Initialize white canvas background
   function initCanvas() {
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.beginPath();
   }
   initCanvas();
 
-  // Helper to get precise mouse / pointer coordinates on the canvas
+  // Switch to Brush Mode
+  if (drawBtn) {
+    drawBtn.addEventListener('click', () => {
+      isEraser = false;
+      drawBtn.classList.add('active-tool');
+      if (eraserBtn) eraserBtn.classList.remove('active-tool');
+      ctx.beginPath(); // Reset path buffer
+    });
+  }
+
+  // Switch to Eraser Mode
+  if (eraserBtn) {
+    eraserBtn.addEventListener('click', () => {
+      isEraser = true;
+      eraserBtn.classList.add('active-tool');
+      if (drawBtn) drawBtn.classList.remove('active-tool');
+      ctx.beginPath(); // Reset path buffer
+    });
+  }
+
+  // Calculate precise cursor position relative to canvas scaling
   function getCoordinates(e) {
     const rect = canvas.getBoundingClientRect();
     const scaleX = canvas.width / rect.width;
@@ -32,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 
-  // Start Drawing
+  // Start Stroke
   function startDrawing(e) {
     isDrawing = true;
     const pos = getCoordinates(e);
@@ -40,25 +64,26 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.moveTo(pos.x, pos.y);
   }
 
-  // Draw Line
+  // Execute Drawing / Erasing
   function draw(e) {
     if (!isDrawing) return;
-    
-    // Prevent default touch scrolling behavior while drawing on mobile/touch
     e.preventDefault();
 
     const pos = getCoordinates(e);
 
+    ctx.globalCompositeOperation = 'source-over';
     ctx.lineWidth = brushSize ? brushSize.value : 5;
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
-    ctx.strokeStyle = brushColor ? brushColor.value : '#1c150e';
+    
+    // Use white stroke for eraser mode against white canvas background
+    ctx.strokeStyle = isEraser ? '#ffffff' : (brushColor ? brushColor.value : '#1c150e');
 
     ctx.lineTo(pos.x, pos.y);
     ctx.stroke();
   }
 
-  // Stop Drawing
+  // End Stroke
   function stopDrawing() {
     if (isDrawing) {
       isDrawing = false;
@@ -66,22 +91,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Universal Pointer Event Listeners (Works for Mouse, Trackpad, Touch, and Stylus)
+  // Universal Pointer Events (Mouse, Trackpad, Touch, Stylus)
   canvas.addEventListener('pointerdown', startDrawing);
   canvas.addEventListener('pointermove', draw);
   canvas.addEventListener('pointerup', stopDrawing);
   canvas.addEventListener('pointerleave', stopDrawing);
 
-  // Clear Canvas Button
+  // Clear Canvas
   if (clearBtn) {
     clearBtn.addEventListener('click', initCanvas);
   }
 
-  // Publish Artwork to Gallery
+  // Publish Drawing
   if (publishBtn) {
     publishBtn.addEventListener('click', () => {
-      const title = artTitleInput.value.trim() || 'Untitled Piece';
-      const artist = artistNameInput.value.trim() || 'Anonymous Artist';
+      const title = artTitleInput ? artTitleInput.value.trim() || 'Untitled Piece' : 'Untitled Piece';
+      const artist = artistNameInput ? artistNameInput.value.trim() || 'Anonymous Artist' : 'Anonymous Artist';
       const dataUrl = canvas.toDataURL('image/png');
 
       const card = document.createElement('article');
@@ -103,8 +128,8 @@ document.addEventListener('DOMContentLoaded', () => {
         communityGallery.style.display = 'block';
         communityCards.prepend(card);
 
-        artTitleInput.value = '';
-        artistNameInput.value = '';
+        if (artTitleInput) artTitleInput.value = '';
+        if (artistNameInput) artistNameInput.value = '';
         initCanvas();
 
         card.scrollIntoView({ behavior: 'smooth' });
